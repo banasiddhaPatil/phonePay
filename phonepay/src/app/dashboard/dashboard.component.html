@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="assets/logo.png">
+        </div>
+        <ul class="menu">
+            <li><a (click)="onClick(1)">Profile</a></li>
+            <li><a href="#">Payments</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">Wallet</a></li>
+            <li><a (click)="onClick(2)">Bank Accounts</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="header">
+            <h1>Dashboard</h1>
+            <div class="user-info">
+                <!-- <button class="login-button" (click)="onClick()">Login</button> -->
+                <p>{{phonePayUser.name}}</p>
+                <img src="assets/img.png" alt="User Icon" class="enlarged-image">
+            </div>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>Balance</h3>
+                <p>Check Balance</p>
+            </div>
+            <div class="card">
+                <h3>Recent Transactions</h3>
+                <p>View all</p>
+            </div>
+            <div class="card">
+                <h3>Offers</h3>
+                <p>Check Now</p>
+            </div>
+        </div>
+        
+        <div *ngIf="whatToShow==0" class="content"  >
+            <h2>Transaction History</h2>
+            <!-- Transaction table or other content here -->
+        </div>
+
+        <div *ngIf="whatToShow==1">
+         <app-profile [phonePayUserProp]="phonePayUser"></app-profile>
+        </div>
+
+        <div *ngIf="whatToShow==2">
+            <app-bank-accounts [phonePayUserProp]="phonePayUser"></app-bank-accounts>
+        </div>
+    </div>
+    
+</body>
+</html>
