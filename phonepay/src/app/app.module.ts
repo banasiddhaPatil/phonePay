@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { ActivatedRoute } from '@angular/router';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { BankAccountsComponent } from './dashboard/bank-accounts/bank-accounts.component';
+import { PaymentComponent } from './dashboard/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BankAccountsComponent } from './dashboard/bank-accounts/bank-accounts.c
     DashboardComponent,
     ProfileComponent,
     BankAccountsComponent,
+    PaymentComponent,
   
   ],
   imports: [

@@ -25,4 +25,12 @@ export class BankService {
   public linkedList(obj:any):Observable<any>{
     return this.httpServices.get<any>(`${this.baseUrl}/getLinkedList/${obj}`);
   }
+
+  public verifyupiId(obj:any):Observable<any>{
+    return this.httpServices.get<any>(`${this.baseUrl}/verifyUpiId/${obj}`);
+  }
+
+  public sendMoney(obj:any):Observable<any>{
+    return this.httpServices.post<any>(`${this.baseUrl}/sendMoney`,obj);
+  }
 }

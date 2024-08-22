@@ -12,7 +12,7 @@
         </div>
         <ul class="menu">
             <li><a (click)="onClick(1)">Profile</a></li>
-            <li><a href="#">Payments</a></li>
+            <li><a (click)="onClick(3)">Payments</a></li>
             <li><a href="#">Offers</a></li>
             <li><a href="#">Wallet</a></li>
             <li><a (click)="onClick(2)">Bank Accounts</a></li>
@@ -55,6 +55,9 @@
 
         <div *ngIf="whatToShow==2">
             <app-bank-accounts [phonePayUserProp]="phonePayUser"></app-bank-accounts>
+        </div>
+        <div *ngIf="whatToShow==3">
+            <app-payment [phonePayUserProp]="phonePayUser"></app-payment>
         </div>
     </div>
     

@@ -25,5 +25,17 @@ public interface LinkedBankAccountRepo extends JpaRepository<LinkedBankAccount,I
     int countByMobNo(String mobNo);
 
     List<LinkedBankAccount> findByMobNo(String mob);
-    // int countByPhonePayUserIdAndBankUserId(int phonepayId,int bankId);
+
+    int countByUpiId(String upiId);
+
+    LinkedBankAccount findByUpiId(String upiId);
+
+
+    LinkedBankAccount findByMobNoAndIsDeletedAndIsPrimary(String upiId, int i,int j);
+
+    LinkedBankAccount findByUpiIdAndIsDeleted(String receiverUpiId, int i);
+
+    LinkedBankAccount findByPhonePayUserId(Integer senderId);
+
+    LinkedBankAccount findByPhonePayUserIdAndIsPrimaryAndIsDeleted(Integer senderId, int i, int i1);
 }

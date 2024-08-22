@@ -25,7 +25,6 @@ export class BankAccountsComponent {
   });
   
   this.myServices.linkedList(this.phonePayUserProp.mobNumber).subscribe((res:any)=>{
-    console.log(res);
 this.linkdbankList=res;
 });
   }
@@ -36,6 +35,7 @@ this.linkdbankList=res;
   babkId!:number;
   otp:number=0;
   upiPin:number=0;
+ ;
 
   onClick(id:number){
     this.babkId=id;

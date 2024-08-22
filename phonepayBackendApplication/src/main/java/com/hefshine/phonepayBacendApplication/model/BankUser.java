@@ -20,5 +20,6 @@ public class BankUser {
     private String userEmail;
     private String accountNumber;
     private String bankName;
+    private Double bankBalance;
     private String ifscCode;
 }
