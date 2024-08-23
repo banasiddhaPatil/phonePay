@@ -1,6 +1,8 @@
 package com.hefshine.phonepayBacendApplication.servicesImp;
 
 import com.hefshine.phonepayBacendApplication.model.BankUser;
+import com.hefshine.phonepayBacendApplication.model.LinkedBankAccount;
+import com.hefshine.phonepayBacendApplication.model.dto.BalanceCheckDTO;
 import com.hefshine.phonepayBacendApplication.repo.BankUserRepo;
 import com.hefshine.phonepayBacendApplication.repo.LinkedBankAccountRepo;
 import com.hefshine.phonepayBacendApplication.services.BankUserServices;
@@ -27,5 +29,19 @@ public class BankUserServicesImp implements BankUserServices {
             if(count==0) list2.add(bank);
         }
         return list2;
+    }
+
+    @Override
+    public List<BalanceCheckDTO> checkBalace(int id) {
+        List<LinkedBankAccount> ll=linkedBankAccountRepo.findByPhonePayUserIdAndIsDeleted(id,0);
+        List<BalanceCheckDTO> list=new ArrayList<>();
+        for(LinkedBankAccount l:ll){
+            BalanceCheckDTO bb=new BalanceCheckDTO();
+            BankUser bankUser=bankUserRepo.findById(l.getBankUserId()).get();
+            bb.setBankName(bankUser.getBankName());
+            bb.setBankBalance(bankUser.getBankBalance());
+            list.add(bb);
+        }
+        return list;
     }
 }

@@ -38,4 +38,8 @@ public interface LinkedBankAccountRepo extends JpaRepository<LinkedBankAccount,I
     LinkedBankAccount findByPhonePayUserId(Integer senderId);
 
     LinkedBankAccount findByPhonePayUserIdAndIsPrimaryAndIsDeleted(Integer senderId, int i, int i1);
+
+    LinkedBankAccount findByPhonePayUserIdAndIsPrimary(int id,int i);
+
+    List<LinkedBankAccount> findByPhonePayUserIdAndIsDeleted(int id, int i);
 }

@@ -1,12 +1,14 @@
 package com.hefshine.phonepayBacendApplication.controller;
 
 import com.hefshine.phonepayBacendApplication.model.PhonePayUser;
+import com.hefshine.phonepayBacendApplication.model.Transactions;
 import com.hefshine.phonepayBacendApplication.services.BankUserServices;
 import com.hefshine.phonepayBacendApplication.services.PhonePayUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -42,6 +44,16 @@ public class PhonePayUserController {
     @CrossOrigin
     public PhonePayUser getPhonePayUser(@PathVariable int id){
         return phonePayUserServices.getPhonePayUser(id);
+    }
+
+    @GetMapping("get/all/transactions/{id}")
+    public List<Transactions> getAllTransactions(@PathVariable int id){
+        return phonePayUserServices.getAllTransactions(id);
+    }
+
+    @GetMapping("get/user/{id}")
+    public List<String> getuserInfo(@PathVariable int id){
+        return phonePayUserServices.getInfo(id);
     }
 
 

@@ -33,4 +33,18 @@ export class BankService {
   public sendMoney(obj:any):Observable<any>{
     return this.httpServices.post<any>(`${this.baseUrl}/sendMoney`,obj);
   }
+
+  public getAllTransations(obj:any):Observable<any>{
+    return this.httpServices.get<any>(`${this.baseUrl}/get/all/transactions/${obj}`);
+  }
+  public getAllTransationsuser(obj:any):Observable<any>{
+    return this.httpServices.get<any>(`${this.baseUrl}/get/all/transactions/${obj}`);
+  }
+  public userInfo(obj:any):Observable<any>{
+    return this.httpServices.get<any>(`${this.baseUrl}/get/user/${obj}`)
+  }
+
+  public checkBankBalance(obj:any):Observable<any>{
+    return this.httpServices.get<any>(`${this.baseUrl}/get/bank/balance/${obj}`);
+  }
 }

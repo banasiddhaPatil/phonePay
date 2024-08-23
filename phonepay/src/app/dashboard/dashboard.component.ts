@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { PhonePayUser } from './phone-pay-user';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
+import { BankService } from '../bank.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +13,11 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   phonePayUser:PhonePayUser={id:0,name:'',mobNumber:''};
-
+  transacations!:any[];
+ checkBalance!:any[];
   whatToShow:number=0;
 
-  constructor(private http:UserService,private appCom:AppComponent,private route:Router){}
+  constructor(private httpp:BankService,private http:UserService ,private appCom:AppComponent,private route:Router){}
 ngOnInit(){
   this.http.getPhonePayUser(this.appCom.phonePayUserId).subscribe({
     next: (response) => {
@@ -26,10 +28,18 @@ ngOnInit(){
       // You can also display an error message to the user
     },
   });
-  
+  this.httpp.getAllTransationsuser(this.appCom.phonePayUserId).subscribe((res:any)=>{
+    this.transacations=res;
+  });
+
+  this.httpp.checkBankBalance(this.appCom.phonePayUserId).subscribe((data:any)=>{
+    this.checkBalance=data;
+    console.log(data);
+  });
 }
 onClick(num:number){
+  console.log(num);
   this.whatToShow=num;
-}
-    
+  this.ngOnInit();
+}   
 }

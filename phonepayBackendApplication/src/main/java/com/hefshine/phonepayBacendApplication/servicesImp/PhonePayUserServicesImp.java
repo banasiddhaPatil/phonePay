@@ -1,13 +1,18 @@
 package com.hefshine.phonepayBacendApplication.servicesImp;
 
 import com.hefshine.phonepayBacendApplication.model.BankUser;
+import com.hefshine.phonepayBacendApplication.model.LinkedBankAccount;
 import com.hefshine.phonepayBacendApplication.model.PhonePayUser;
+import com.hefshine.phonepayBacendApplication.model.Transactions;
 import com.hefshine.phonepayBacendApplication.repo.BankUserRepo;
+import com.hefshine.phonepayBacendApplication.repo.LinkedBankAccountRepo;
 import com.hefshine.phonepayBacendApplication.repo.PhonePayUserRepo;
+import com.hefshine.phonepayBacendApplication.repo.TransactionsRepo;
 import com.hefshine.phonepayBacendApplication.services.PhonePayUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -22,6 +27,12 @@ public class PhonePayUserServicesImp implements PhonePayUserServices {
 
     @Autowired
     BankUserRepo bankUserRepo;
+
+    @Autowired
+    TransactionsRepo transactionsRepo;
+
+    @Autowired
+    LinkedBankAccountRepo linkedBankAccountRepo;
 
     @Override
     public boolean userRegister(String mobileNumber) {
@@ -86,5 +97,23 @@ public class PhonePayUserServicesImp implements PhonePayUserServices {
         int count=phonePayUserRepo.countById(id);
         if(count==0) return null;
         return phonePayUserRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Transactions> getAllTransactions(int id) {
+        return transactionsRepo.findByPhonePayUserId(id);
+    }
+
+    @Override
+    public List<String> getInfo(int id) {
+        //0
+        LinkedBankAccount ll=linkedBankAccountRepo.findByPhonePayUserIdAndIsPrimary(id,1);
+        BankUser bb=bankUserRepo.findById(ll.getBankUserId()).get();
+        List<String> list=new ArrayList<>();
+        list.add(ll.getUpiId());
+        list.add(ll.getMobNo());
+        list.add(bb.getBankName());
+        list.add(bb.getUserEmail());
+        return list;
     }
 }
